@@ -558,12 +558,13 @@ if (isset($_GET['checkDate'])) {
                                     <td class="<?= $availabilityClass ?> w3-bold"><?= htmlspecialchars($facility['availability'] ?? '') ?></td>
                                     <?php if (!$isStaff && strtolower($facility['availability'] ?? '') === 'available'): ?>
                                         <td>
-                                            <button onclick="openBookingModal('<?= htmlspecialchars($facility['facilityID'] ?? '') ?>', 
+                                        <button onclick="openBookingModal('<?= htmlspecialchars($facility['facilityID'] ?? '') ?>', 
                                                 '<?= htmlspecialchars($facility['name'] ?? '') ?>', 
-                                                '<?= htmlspecialchars($facility['ratePerDay'] ?? '') ?>')" 
+                                                '<?= htmlspecialchars($facility['ratePerDay'] ?? '') ?>',
+                                                '<?= htmlspecialchars($_GET['checkDate'] ?? '') ?>')" 
                                                 class="book-now-btn">
-                                                <i class="fas fa-calendar-plus"></i> Book Now
-                                            </button>
+                                            <i class="fas fa-calendar-plus"></i> Book Now
+                                        </button>
                                         </td>
                                     <?php endif; ?>
                                 </tr>
@@ -670,9 +671,7 @@ if (isset($_GET['checkDate'])) {
                 <input type="hidden" id="modalFacilityId" name="facilityID">
                 
                 <div class="form-group">
-                    <label for="modalCustomerId">Customer ID:</label>
-                    <input type="text" id="modalCustomerId" name="customerID" 
-                           value="<?= htmlspecialchars($_SESSION['customerID'] ?? '') ?>" readonly>
+                <input type="hidden" id="modalCustomerId" name="customerID" value="<?= htmlspecialchars($_SESSION['customerID'] ?? '') ?>">
                 </div>
 
                 <div class="form-group">

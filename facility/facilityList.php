@@ -613,68 +613,6 @@ while ($row = mysqli_fetch_assoc($facilityListQry)) {
                 </form>
             </div>
         </div>
-
-        <script>
-            // Initialize date pickers
-            flatpickr(".flatpickr", {
-                dateFormat: "Y-m-d",
-                minDate: "today",
-                onChange: function(selectedDates, dateStr, instance) {
-                    if (instance.element.id === 'modalStartDate' || instance.element.id === 'modalEndDate') {
-                        calculateTotal();
-                    }
-                }
-            });
-
-            let currentRatePerDay = 0;
-
-            function openBookingModal(facilityId, facilityName, ratePerDay) {
-                document.getElementById('modalFacilityId').value = facilityId;
-                document.getElementById('modalFacilityName').textContent = facilityName;
-                document.getElementById('modalRatePerDay').textContent = ratePerDay;
-                currentRatePerDay = parseFloat(ratePerDay);
-                
-                // Reset form
-                document.getElementById('bookingForm').reset();
-                document.getElementById('rentalDuration').textContent = '0 days';
-                document.getElementById('totalAmount').textContent = 'RM 0.00';
-                
-                // Show modal and prevent body scrolling
-                document.getElementById('bookingModal').style.display = 'block';
-                document.body.classList.add('modal-open');
-            }
-
-            function closeBookingModal() {
-                document.getElementById('bookingModal').style.display = 'none';
-                document.body.classList.remove('modal-open');
-            }
-
-            function calculateTotal() {
-                const startDate = document.getElementById('modalStartDate')._flatpickr.selectedDates[0];
-                const endDate = document.getElementById('modalEndDate')._flatpickr.selectedDates[0];
-                
-                if (startDate && endDate) {
-                    // Calculate number of days
-                    const diffTime = Math.abs(endDate - startDate);
-                    const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-                    
-                    // Update duration display
-                    document.getElementById('rentalDuration').textContent = days + ' day' + (days > 1 ? 's' : '');
-                    
-                    // Calculate and update total amount
-                    const total = currentRatePerDay * days;
-                    document.getElementById('totalAmount').textContent = 'RM ' + total.toFixed(2);
-                }
-            }
-
-            // Close modal when clicking outside
-            window.onclick = function(event) {
-                const modal = document.getElementById('bookingModal');
-                if (event.target == modal) {
-                    closeBookingModal();
-                }
-            }
-        </script>
     </body>
 </html>
 

@@ -23,9 +23,12 @@ if (isset($_POST['action'])){
 // Check if the form was submitted
 if (isset($_POST['submitBooking'])) {
     $facilityId = $_POST['facilityID'] ?? null;
-    $customerId = isset($_SESSION['userType']) && $_SESSION['userType'] == 'customer' 
-                  ? $_SESSION['customerID'] 
-                  : ($_POST['customerID'] ?? null);
+    $customerId = isset($_SESSION['customerID']) ? $_SESSION['customerID'] : null;
+
+    if (!$facilityId || !$customerId) {
+        header("Location: bookFacilityForm.php?error=3&message=Missing customer or facility ID.");
+        exit();
+    }
 
     // Debugging logs
     error_log("Facility ID: " . $facilityId);
