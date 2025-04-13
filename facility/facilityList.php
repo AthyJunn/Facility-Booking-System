@@ -495,15 +495,14 @@ $numRows = mysqli_num_rows($facilityListQry);
                 <table class="facility-table">
                     <thead>
                         <tr>
-            <th>No</th>
-            <th>Facility ID</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Capacity</th>
-            <th>Detail</th>
-            <th>Rate Per Day</th>
-            <th>Status</th>
-            <th>Actions</th>
+                            <th>No</th>
+                            <th>Facility ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Capacity</th>
+                            <th>Detail</th>
+                            <th>Rate Per Day</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -544,11 +543,8 @@ while ($row = mysqli_fetch_assoc($facilityListQry)) {
                                                 <i class="fas fa-trash"></i> Delete
                                             </button>
                                         </form>';
-                                } else if ($row['status'] == 'Available') {
-                                    echo '<button onclick="openBookingModal(\'' . $row['facilityId'] . '\', \'' . 
-                                         htmlspecialchars($row['name']) . '\', \'' . $row['ratePerDay'] . '\')" class="btn btn-update">
-                                            <i class="fas fa-calendar-plus"></i> Book Now
-                                          </button>';
+                                } else{
+                                    $row['status'] == 'Available';
                                 }
                                 echo '</td>';
     echo '</tr>';
