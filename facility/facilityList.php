@@ -503,6 +503,7 @@ $numRows = mysqli_num_rows($facilityListQry);
                             <th>Detail</th>
                             <th>Rate Per Day</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

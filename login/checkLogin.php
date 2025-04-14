@@ -57,7 +57,7 @@ function processLogin($email, $password) {
             $_SESSION['username'] = $user['staffEmail'];
             $_SESSION['userType'] = $user['userType'];
 
-            header("Location: ../MainPage.php");
+            header("Location: MainPage.php");
             exit();
         } else {
             $error = "Invalid password. Please try again.";
